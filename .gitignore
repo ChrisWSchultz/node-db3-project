@@ -65,3 +65,5 @@ typings/
 
 # VSCode settings
 .vscode/
+
+.idea
