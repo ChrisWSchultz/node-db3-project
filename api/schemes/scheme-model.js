@@ -19,25 +19,28 @@ function findById(id) {
 
 function findSteps(id) {
     return db.table("steps")
-        .where("id", id)
-        .first()
+        .where("scheme_id", id)
 }
 
 function add(scheme) {
-    return db.table("scheme")
-        .insert(scheme, "id")
-        .then(([id]) => find(id))
+    return Promise.resolve(
+        db.table("schemes")
+            .insert(scheme, "id")
+            .then(([id]) => find(id))
+    )
 }
 
 function update(changes, id) {
-    return db.table("scheme")
-        .where("id", id)
-        .update(changes, "id")
-        .then(([id]) => find(id))
+    return Promise.resolve(
+        db.table("schemes")
+            .where("id", id)
+            .update(changes, "id")
+            .then(([id]) => find(id))
+    )
 }
 
 function remove(id) {
-    return db.table("scheme")
+    return db.table("schemes")
         .where("id", id)
         .delete(id)
 }
